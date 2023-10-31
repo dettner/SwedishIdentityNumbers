@@ -1,0 +1,11 @@
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\bin\Debug\net7.0\SwedishIdentityNumbers.deps.json
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\bin\Debug\net7.0\SwedishIdentityNumbers.dll
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\bin\Debug\net7.0\SwedishIdentityNumbers.pdb
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\SwedishIdentityNumbers.GeneratedMSBuildEditorConfig.editorconfig
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\SwedishIdentityNumbers.AssemblyInfoInputs.cache
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\SwedishIdentityNumbers.AssemblyInfo.cs
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\SwedishIdentityNumbers.csproj.CoreCompileInputs.cache
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\SwedishIdentityNumbers.dll
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\refint\SwedishIdentityNumbers.dll
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\SwedishIdentityNumbers.pdb
+D:\source\SwedishIdentityNumbers\src\SwedishIdentityNumbers\obj\Debug\net7.0\ref\SwedishIdentityNumbers.dll
