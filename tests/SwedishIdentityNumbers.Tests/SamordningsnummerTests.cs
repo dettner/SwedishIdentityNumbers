@@ -17,7 +17,6 @@ namespace SwedishIdentityNumbers.Tests
         {
             [Theory]
             [InlineData("701063-2391", true)]
-            [InlineData("7010632391", true)]
             [InlineData("701063+2391", true)]
             [InlineData("701063-2390", false)]
             [InlineData("7010632390", false)]

@@ -7,14 +7,12 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-using System.Text.RegularExpressions;
-
 namespace SwedishIdentityNumbers;
 
 /// <summary>
 ///     Represents a Swedish organization number (Organisationsnummer), which is used to identify legal entities in Sweden.
 /// </summary>
-public sealed partial class Organisationsnummer : SwedishIdentityNumber
+public sealed class Organisationsnummer : SwedishIdentityNumber
 {
     /// <summary>
     ///     Initializes a new instance of the <see cref="Organisationsnummer" /> class.
@@ -23,7 +21,7 @@ public sealed partial class Organisationsnummer : SwedishIdentityNumber
     /// <exception cref="FormatException">Thrown if the number format is invalid.</exception>
     public Organisationsnummer(string number) : base(number)
     {
-        ProbableSwedishCompanyForm = GetProbableSwedishCompanyForm(number);
+        ProbableSwedishCompanyForm = GetProbableSwedishCompanyForm(Number);
     }
 
     /// <summary>
@@ -34,15 +32,12 @@ public sealed partial class Organisationsnummer : SwedishIdentityNumber
 
     private SwedishCompanyForm GetProbableSwedishCompanyForm(string number)
     {
-        SwedishCompanyForm swedishCompanyForm;
-
-        var prefix = number[..2];
-        if (GovernmentAgencyRegex().IsMatch(prefix))
+        if (number.StartsWith("20"))
         {
-            swedishCompanyForm = SwedishCompanyForm.GovernmentAgency;
+            return SwedishCompanyForm.GovernmentAgency;
         }
 
-        swedishCompanyForm = number[..1] switch
+        return number[..1] switch
         {
             "5" => SwedishCompanyForm.JointStockCompany,
             "9" => SwedishCompanyForm.GeneralPartnership,
@@ -50,7 +45,6 @@ public sealed partial class Organisationsnummer : SwedishIdentityNumber
             "2" => SwedishCompanyForm.ReligiousCommunity,
             _ => SwedishCompanyForm.Unknown
         };
-        return swedishCompanyForm;
     }
 
     /// <summary>
@@ -83,11 +77,4 @@ public sealed partial class Organisationsnummer : SwedishIdentityNumber
         number = SanitizeNumber(number);
         return number.Length == 10 && ValidateLuhn(number);
     }
-
-
-    /// <summary>
-    ///     A regex pattern used to identify government agencies based on the prefix of the organization number.
-    /// </summary>
-    [GeneratedRegex("^2[0-9]")]
-    private static partial Regex GovernmentAgencyRegex();
 }

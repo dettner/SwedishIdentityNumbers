@@ -14,9 +14,9 @@ namespace SwedishIdentityNumbers.Tests;
 public class PersonnummerTests
 {
     [Theory]
-    [InlineData("870506-5555", true)]
-    [InlineData("8705065555", true)]
-    [InlineData("870506+5555", true)]
+    [InlineData("870506-5558", true)]
+    [InlineData("8705065558", true)]
+    [InlineData("870506+5558", true)]
     [InlineData("870506-5550", false)]
     [InlineData("8705065550", false)]
     [InlineData("870506+5550", false)]
@@ -38,9 +38,9 @@ public class PersonnummerTests
     }
 
     [Theory]
-    [InlineData("870506-5555")]
-    [InlineData("8705065555")]
-    [InlineData("870506+5555")]
+    [InlineData("870506-5558")]
+    [InlineData("8705065558")]
+    [InlineData("870506+5558")]
     public void Constructor_CreatesInstance(string number)
     {
         var personnummer = new Personnummer(number);

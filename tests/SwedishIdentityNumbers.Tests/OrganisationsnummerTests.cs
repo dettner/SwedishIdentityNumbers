@@ -14,13 +14,30 @@ namespace SwedishIdentityNumbers.Tests;
 public class OrganisationsnummerTests
 {
     [Theory]
-    [InlineData("556456-4252", true, SwedishCompanyForm.JointStockCompany)]
-    [InlineData("915652-5173", true, SwedishCompanyForm.GeneralPartnership)]
-    [InlineData("716920-5979", true, SwedishCompanyForm.HousingCooperative)]
-    [InlineData("245000-4653", true, SwedishCompanyForm.GovernmentAgency)]
-    [InlineData("126920-5979", true, SwedishCompanyForm.ReligiousCommunity)]
-    [InlineData("316920-5979", true, SwedishCompanyForm.Unknown)]
-    [InlineData("556456-4250", false, SwedishCompanyForm.Unknown)] // Invalid Luhn
+    [InlineData("556011-7482", true, SwedishCompanyForm.JointStockCompany)]
+    [InlineData("916622-3959", true, SwedishCompanyForm.GeneralPartnership)]
+    [InlineData("716408-5370", true, SwedishCompanyForm.HousingCooperative)]
+    [InlineData("202100-5448", true, SwedishCompanyForm.GovernmentAgency)]
+    [InlineData("252002-6614", true, SwedishCompanyForm.ReligiousCommunity)]
+    [InlineData("802434-2153", false, SwedishCompanyForm.Unknown)] // Invalid Luhn
+    [InlineData("5560117482", true, SwedishCompanyForm.JointStockCompany)]
+    [InlineData("9166223959", true, SwedishCompanyForm.GeneralPartnership)]
+    [InlineData("7164085370", true, SwedishCompanyForm.HousingCooperative)]
+    [InlineData("2021005448", true, SwedishCompanyForm.GovernmentAgency)]
+    [InlineData("2520026614", true, SwedishCompanyForm.ReligiousCommunity)]
+    [InlineData("5564564250", false, SwedishCompanyForm.Unknown)] // Invalid Luhn
+    [InlineData("16556011-7482", true, SwedishCompanyForm.JointStockCompany)]
+    [InlineData("16916622-3959", true, SwedishCompanyForm.GeneralPartnership)]
+    [InlineData("16716408-5370", true, SwedishCompanyForm.HousingCooperative)]
+    [InlineData("16202100-5448", true, SwedishCompanyForm.GovernmentAgency)]
+    [InlineData("16252002-6614", true, SwedishCompanyForm.ReligiousCommunity)]
+    [InlineData("16556456-4250", false, SwedishCompanyForm.Unknown)] // Invalid Luhn
+    [InlineData("165560117482", true, SwedishCompanyForm.JointStockCompany)]
+    [InlineData("169166223959", true, SwedishCompanyForm.GeneralPartnership)]
+    [InlineData("167164085370", true, SwedishCompanyForm.HousingCooperative)]
+    [InlineData("162021005448", true, SwedishCompanyForm.GovernmentAgency)]
+    [InlineData("162520026614", true, SwedishCompanyForm.ReligiousCommunity)]
+    [InlineData("165564564250", false, SwedishCompanyForm.Unknown)] // Invalid Luhn
     public void TryCreate_ValidatesCorrectly(string number, bool isValid, SwedishCompanyForm expectedForm)
     {
         var success = Organisationsnummer.TryCreate(number, out var result);
@@ -29,7 +46,13 @@ public class OrganisationsnummerTests
         if (isValid)
         {
             Assert.NotNull(result);
-            Assert.Equal(number.Replace("-", ""), result!.Number);
+            var input = number.Replace("-", "");
+            if (input.StartsWith("16"))
+            {
+                input = input.Substring(2);
+            }
+
+            Assert.Equal(input, result!.Number);
             Assert.Equal(expectedForm, result!.ProbableSwedishCompanyForm);
         }
         else
@@ -39,9 +62,9 @@ public class OrganisationsnummerTests
     }
 
     [Theory]
-    [InlineData("556456-4252")]
-    [InlineData("915652-5173")]
-    [InlineData("716920-5979")]
+    [InlineData("556011-7482")]
+    [InlineData("916622-3959")]
+    [InlineData("716408-5370")]
     public void Constructor_CreatesInstance(string number)
     {
         var organisationsnummer = new Organisationsnummer(number);
