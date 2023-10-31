@@ -1,17 +1,13 @@
-﻿// ███████╗███████╗██████╗ ██╗███████╗
-// ██╔════╝██╔════╝██╔══██╗██║██╔════╝
-// ███████╗█████╗  ██║  ██║██║███████╗
-// ╚════██║██╔══╝  ██║  ██║██║╚════██║
-// ███████║███████╗██████╔╝██║███████║
-// ╚══════╝╚══════╝╚═════╝ ╚═╝╚══════╝
-// Copyright (C) 2014 - 2023 Sedis AB
-// SwedishIdentityNumberTests.cs
-// Visual Studio Project: SwedishIdentityNumbers.Tests
-// Created: 2023-10-31
-// Last touched: 2023-10-31
+﻿//  -----------------------------------------------------------------------
+//  <copyright file="SwedishIdentityNumberTests.cs" company="Dettner Engineering AB">
+//      Copyright (c) 2023 Dettner Engineering AB. All rights reserved.
+// 
+//      This file is part of SwedishIdentityNumbers project.
+//      Licensed under the MIT License. See LICENSE.txt in the project root for license information.
+//  </copyright>
+// -----------------------------------------------------------------------
 
 using System.Reflection;
-using SwedishIdentityNumbers.Models;
 using Xunit;
 
 namespace SwedishIdentityNumbers.Tests;
