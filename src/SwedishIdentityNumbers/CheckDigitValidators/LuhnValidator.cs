@@ -14,6 +14,9 @@ namespace SwedishIdentityNumbers.CheckDigitValidators;
 /// <summary>
 ///     Implements the <see cref="ICheckDigitValidator" /> interface to provide Luhn algorithm based check digit
 ///     validation.
+///     <remarks>
+///         See the <see cref="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm on Wikipedia</see>.
+///     </remarks>
 /// </summary>
 public class LuhnValidator : ICheckDigitValidator
 {
@@ -21,7 +24,8 @@ public class LuhnValidator : ICheckDigitValidator
     ///     Validates the specified number using the Luhn algorithm.
     /// </summary>
     /// <param name="number">The number to validate.</param>
-    /// <exception cref="ArgumentNullException">Thrown if <paramref name="number" /> is null or empty.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="number" /> is empty.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="number" /> is null.</exception>
     /// <exception cref="FormatException">Thrown if <paramref name="number" /> contains non-digit characters.</exception>
     /// <returns><c>true</c> if the specified number passes the Luhn validation; otherwise, <c>false</c>.</returns>
     public bool Validate(string number)

@@ -23,7 +23,7 @@ public class Personnummer : SwedishIdentityNumber
     /// <exception cref="FormatException">Thrown if the number format is invalid.</exception>
     public Personnummer(string number) : base(number)
     {
-        DateOfBirth = GetBirthDate(number);
+        DateOfBirth = ExtractDateOfBirth(number);
     }
 
 
@@ -69,7 +69,7 @@ public class Personnummer : SwedishIdentityNumber
         return TryParseAndAdjustDate(number, out _);
     }
 
-    private DateOnly GetBirthDate(string number)
+    private DateOnly ExtractDateOfBirth(string number)
     {
         TryParseAndAdjustDate(number, out var birthDate);
         return birthDate;

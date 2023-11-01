@@ -23,7 +23,7 @@ public sealed class Organisationsnummer : SwedishIdentityNumber
     /// <exception cref="FormatException">Thrown if the number format is invalid.</exception>
     public Organisationsnummer(string number) : base(number)
     {
-        ProbableSwedishCompanyForm = GetProbableSwedishCompanyForm(Number);
+        ProbableSwedishCompanyForm = ExtractProbableSwedishCompanyForm(Number);
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public sealed class Organisationsnummer : SwedishIdentityNumber
     /// </summary>
     public SwedishCompanyForm ProbableSwedishCompanyForm { get; private set; }
 
-    private SwedishCompanyForm GetProbableSwedishCompanyForm(string number)
+    private SwedishCompanyForm ExtractProbableSwedishCompanyForm(string number)
     {
         if (number.StartsWith("20"))
         {
