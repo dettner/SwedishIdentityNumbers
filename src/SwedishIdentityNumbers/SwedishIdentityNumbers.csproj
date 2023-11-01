@@ -11,12 +11,11 @@
 		<Company>Dettner Engineering AB</Company>
 		<Version>1.0.0</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/yourusername/SwedishIdentityNumbers</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/yourusername/SwedishIdentityNumbers</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/dettner/SwedishIdentityNumbers</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/dettner/SwedishIdentityNumbers</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Identity Numbers Sweden</PackageTags>
 		<PackageReleaseNotes>First release of SwedishIdentityNumbers.</PackageReleaseNotes>
 		<Description>Provides classes and methods to work with Swedish identity numbers.</Description>
-
 	</PropertyGroup>
 </Project>

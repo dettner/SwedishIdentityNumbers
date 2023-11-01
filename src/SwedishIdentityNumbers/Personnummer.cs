@@ -58,10 +58,10 @@ public class Personnummer : SwedishIdentityNumber
     /// </summary>
     /// <param name="number">The number to validate.</param>
     /// <returns><c>true</c> if the specified number has a valid format; otherwise, <c>false</c>.</returns>
-    public override bool IsValidFormat(string number)
+    protected override bool IsValidFormat(string number)
     {
         number = SanitizeNumber(number);
-        return number.Length == 10 && ValidateLuhn(number) && ValidateDate(number);
+        return number.Length == 10 && Validate(number) && ValidateDate(number);
     }
 
     private bool ValidateDate(string number)

@@ -7,7 +7,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
-namespace SwedishIdentityNumbers;
+namespace SwedishIdentityNumbers.Enums;
 
 /// <summary>
 ///     (Swedish: Företagsform.)

@@ -7,6 +7,8 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using SwedishIdentityNumbers.Enums;
+
 namespace SwedishIdentityNumbers;
 
 /// <summary>
@@ -27,7 +29,6 @@ public sealed class Organisationsnummer : SwedishIdentityNumber
     /// <summary>
     ///     Gets the probable form of the company based on the prefix of the organization number.
     /// </summary>
-
     public SwedishCompanyForm ProbableSwedishCompanyForm { get; private set; }
 
     private SwedishCompanyForm GetProbableSwedishCompanyForm(string number)
@@ -72,9 +73,9 @@ public sealed class Organisationsnummer : SwedishIdentityNumber
     /// </summary>
     /// <param name="number">The organization number to validate.</param>
     /// <returns><c>true</c> if the specified number is a valid organization number format; otherwise, <c>false</c>.</returns>
-    public override bool IsValidFormat(string number)
+    protected override bool IsValidFormat(string number)
     {
         number = SanitizeNumber(number);
-        return number.Length == 10 && ValidateLuhn(number);
+        return number.Length == 10 && Validate(number);
     }
 }

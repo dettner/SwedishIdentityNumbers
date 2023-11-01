@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------
 
 using System.Text.RegularExpressions;
+using SwedishIdentityNumbers.CheckDigitValidators;
 
 namespace SwedishIdentityNumbers;
 
@@ -16,16 +17,18 @@ namespace SwedishIdentityNumbers;
 /// </summary>
 public abstract partial class SwedishIdentityNumber
 {
-    protected SwedishIdentityNumber(string number)
+    private readonly ICheckDigitValidator _checkDigitValidator;
+
+    protected SwedishIdentityNumber(string number, ICheckDigitValidator? checkDigitValidator = null)
     {
         ArgumentException.ThrowIfNullOrEmpty(number, nameof(number));
 
         var sanitizedNumber = SanitizeNumber(number);
-
         if (!IsValidFormat(sanitizedNumber)) throw new FormatException("Invalid format.");
         Number = sanitizedNumber;
-    }
 
+        _checkDigitValidator = checkDigitValidator ?? new LuhnValidator();
+    }
 
     /// <summary>
     ///     Gets the identity number.
@@ -37,41 +40,18 @@ public abstract partial class SwedishIdentityNumber
     /// </summary>
     /// <param name="number">The identity number to validate.</param>
     /// <returns><c>true</c> if the specified number has a valid format; otherwise, <c>false</c>.</returns>
-    public abstract bool IsValidFormat(string number);
-
+    protected abstract bool IsValidFormat(string number);
 
     /// <summary>
-    ///     Validates the specified number using the Luhn algorithm.
+    ///     Validates the specified identity number using the implemented validation strategy.
     /// </summary>
-    /// <param name="number">The number to validate.</param>
-    /// <exception cref="ArgumentNullException">Thrown if <paramref name="number" /> is null or empty.</exception>
-    /// <exception cref="FormatException">Thrown if <paramref name="number" /> contains non-digit characters.</exception>
-    /// <returns><c>true</c> if the specified number passes the Luhn validation; otherwise, <c>false</c>.</returns>
-    protected bool ValidateLuhn(string number)
+    /// <param name="number">The identity number to validate.</param>
+    /// <returns><c>true</c> if the specified number is valid; otherwise, <c>false</c>.</returns>
+    protected bool Validate(string number)
     {
-        ArgumentException.ThrowIfNullOrEmpty(number, nameof(number));
-        if (!Regex.IsMatch(number, @"^\d+$"))
-        {
-            throw new FormatException($"Invalid format: {nameof(number)} contains non-digit characters.");
-        }
+        var okLength = number is { Length: 10 };
 
-        var sum = 0;
-        var alternate = false;
-        for (var i = number.Length - 1; i >= 0; i--)
-        {
-            var n = number[i] - '0';
-            if (alternate)
-            {
-                n *= 2;
-                if (n > 9)
-                    n -= 9;
-            }
-
-            sum += n;
-            alternate = !alternate;
-        }
-
-        return sum % 10 == 0;
+        return okLength && _checkDigitValidator.Validate(number);
     }
 
     /// <summary>
@@ -84,6 +64,9 @@ public abstract partial class SwedishIdentityNumber
         return NonDigit().Replace(number.StartsWith("16") ? number.Substring(2) : number, "");
     }
 
+    /// <summary>
+    ///     Provides a compiled regular expression for matching non-digit characters.
+    /// </summary>
     [GeneratedRegex("\\D")]
     private static partial Regex NonDigit();
 }

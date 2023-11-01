@@ -7,6 +7,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using SwedishIdentityNumbers.Enums;
 using Xunit;
 
 namespace SwedishIdentityNumbers.Tests;
