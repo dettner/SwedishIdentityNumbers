@@ -1,5 +1,3 @@
-Based on the provided class definitions and their methods, here is an updated version of your README.md file:
-
 # SwedishIdentityNumbers
 
 A .NET library for working with Swedish identity numbers.
@@ -103,6 +101,7 @@ public enum SwedishCompanyForm
     GovernmentAgency,   // Statlig myndighet
     Unknown             // Okänd
 }
+```
 
 ## Development
 
