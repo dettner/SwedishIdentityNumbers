@@ -15,7 +15,7 @@
 		<PackageProjectUrl>https://github.com/dettner/SwedishIdentityNumbers</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/dettner/SwedishIdentityNumbers</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>Identity Numbers Sweden</PackageTags>
+		<PackageTags>Identity Numbers Sweden Personnummer Organisationsnummer Samordningsnummer validering Företagsform Company Form</PackageTags>
 		<PackageReleaseNotes>First release of SwedishIdentityNumbers.</PackageReleaseNotes>
 		<Description>Provides classes and methods to work with Swedish identity numbers.</Description>
 		<Title>Swedish Identity Numbers</Title>

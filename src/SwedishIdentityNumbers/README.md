@@ -31,6 +31,10 @@ Or search for `SwedishIdentityNumbers` in the NuGet package manager in Visual St
 using SwedishIdentityNumbers;
 
 var personnummer = new Personnummer("8507301234"); // also allows 850730-1234
+// throws 
+// ArgumentNullException if null
+// ArgumentException if empty
+// FormatException if not of the correct format
 ```
 
 #### Get the Date of Birth (a DateOnly) from a `Personnummer`
@@ -55,7 +59,11 @@ if (Personnummer.TryCreate("8507301234", out var personnummer)) // also allows 8
 ```csharp
 using SwedishIdentityNumbers;
 
-var samordningsnummer = new Samordningsnummer("8507901234"); // also allows 850700-1234
+var samordningsnummer = new Samordningsnummer("8507901234"); // also allows 850790-1234
+// throws 
+// ArgumentNullException if null
+// ArgumentException if empty
+// FormatException if not of the correct format
 ```
 
 #### Get the Date of Birth (a DateOnly) from a `Samordningsnummer`
@@ -69,7 +77,11 @@ var dateOfBirth = samordningsnummer.DateOfBirth;
 ```csharp
 using SwedishIdentityNumbers;
 
-var organisationsnummer = new Organisationsnummer("5560360793");
+var organisationsnummer = new Organisationsnummer("5560360793"); // also allows 165560360793 and 556036-0793
+// throws 
+// ArgumentNullException if null
+// ArgumentException if empty
+// FormatException if not of the correct format
 ```
 
 #### Determine the Probable Swedish Company Form
@@ -77,6 +89,20 @@ var organisationsnummer = new Organisationsnummer("5560360793");
 ```csharp
 var companyForm = organisationsnummer.ProbableSwedishCompanyForm;
 ```
+## Swedish Company Forms
+
+The library includes a `SwedishCompanyForm` enum, representing different forms of companies in Sweden. This enum is used in conjunction with the `Organisationsnummer` class to identify the probable form of a company based on its organization number. The different enum values represent various types of company forms, ranging from Joint Stock Companies to Government Agencies. The implementation and enum values are based on information from [Bolagsverket](https://bolagsverket.se/foretag/organisationsnummer.1207.html).
+
+```csharp
+public enum SwedishCompanyForm
+{
+    JointStockCompany,  // Aktiebolag, filialer, banker, försäkringsbolag och europabolag
+    GeneralPartnership, // Handelsbolag och kommanditbolag
+    HousingCooperative, // Bostadsrättsföreningar, ekonomiska föreningar, etc.
+    ReligiousCommunity, // Trossamfund
+    GovernmentAgency,   // Statlig myndighet
+    Unknown             // Okänd
+}
 
 ## Development
 
