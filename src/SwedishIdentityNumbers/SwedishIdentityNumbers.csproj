@@ -9,7 +9,8 @@
 		<PackageId>SwedishIdentityNumbers</PackageId>
 		<Authors>Fredrik Dettner</Authors>
 		<Company>Dettner Engineering AB</Company>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/dettner/SwedishIdentityNumbers</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/dettner/SwedishIdentityNumbers</RepositoryUrl>
@@ -17,5 +18,18 @@
 		<PackageTags>Identity Numbers Sweden</PackageTags>
 		<PackageReleaseNotes>First release of SwedishIdentityNumbers.</PackageReleaseNotes>
 		<Description>Provides classes and methods to work with Swedish identity numbers.</Description>
+		<Title>Swedish Identity Numbers</Title>
+		<Copyright>(c) 2023 Fredrik Dettner</Copyright>
+		<PackageIcon>icon.png</PackageIcon>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Update="icon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Update="README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 </Project>

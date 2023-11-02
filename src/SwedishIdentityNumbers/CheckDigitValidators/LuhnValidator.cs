@@ -15,7 +15,7 @@ namespace SwedishIdentityNumbers.CheckDigitValidators;
 ///     Implements the <see cref="ICheckDigitValidator" /> interface to provide Luhn algorithm based check digit
 ///     validation.
 ///     <remarks>
-///         See the <see cref="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm on Wikipedia</see>.
+///         See the <see href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm on Wikipedia</see>.
 ///     </remarks>
 /// </summary>
 public class LuhnValidator : ICheckDigitValidator

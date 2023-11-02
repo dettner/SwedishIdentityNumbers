@@ -1,3 +1,4 @@
+Based on the provided class definitions and their methods, here is an updated version of your README.md file:
 
 # SwedishIdentityNumbers
 
@@ -29,7 +30,13 @@ Or search for `SwedishIdentityNumbers` in the NuGet package manager in Visual St
 ```csharp
 using SwedishIdentityNumbers;
 
-var personnummer = new Personnummer("198507301234");
+var personnummer = new Personnummer("8507301234"); // also allows 850730-1234
+```
+
+#### Get the Date of Birth (a DateOnly) from a `Personnummer`
+
+```csharp
+var dateOfBirth = personnummer.DateOfBirth;
 ```
 
 ### Try to create a `Personnummer`
@@ -37,7 +44,7 @@ var personnummer = new Personnummer("198507301234");
 ```csharp
 using SwedishIdentityNumbers;
 
-if (Personnummer.TryCreate("198507301234", out var personnummer))
+if (Personnummer.TryCreate("8507301234", out var personnummer)) // also allows 850730-1234
 {
     // Successfully created
 }
@@ -48,15 +55,27 @@ if (Personnummer.TryCreate("198507301234", out var personnummer))
 ```csharp
 using SwedishIdentityNumbers;
 
-var samordningsnummer = new Samordningsnummer("198507301234");
+var samordningsnummer = new Samordningsnummer("8507901234"); // also allows 850700-1234
 ```
 
-### Validate an identity number
+#### Get the Date of Birth (a DateOnly) from a `Samordningsnummer`
+
+```csharp
+var dateOfBirth = samordningsnummer.DateOfBirth;
+```
+
+### Working with `Organisationsnummer`
 
 ```csharp
 using SwedishIdentityNumbers;
 
-var isValid = new Personnummer("198507301234").IsValidFormat();
+var organisationsnummer = new Organisationsnummer("5560360793");
+```
+
+#### Determine the Probable Swedish Company Form
+
+```csharp
+var companyForm = organisationsnummer.ProbableSwedishCompanyForm;
 ```
 
 ## Development
