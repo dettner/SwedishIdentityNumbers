@@ -37,7 +37,7 @@ public sealed class Samordningsnummer : Personnummer
             result = new Samordningsnummer(number);
             return true;
         }
-        catch (FormatException)
+        catch
         {
             result = null;
             return false;

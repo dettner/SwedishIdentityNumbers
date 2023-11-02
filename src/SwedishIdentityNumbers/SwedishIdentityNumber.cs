@@ -19,6 +19,18 @@ public abstract partial class SwedishIdentityNumber
 {
     private readonly ICheckDigitValidator _checkDigitValidator;
 
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="SwedishIdentityNumber" /> class.
+    /// </summary>
+    /// <param name="number">The string representation of the identity number.</param>
+    /// <param name="checkDigitValidator">
+    ///     An optional <see cref="ICheckDigitValidator" /> instance used for
+    ///     validating the check digit of the identity number.
+    ///     If not provided, a default <see cref="LuhnValidator" /> instance will be used.
+    /// </param>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="number" /> is empty.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="number" /> is null.</exception>
+    /// <exception cref="FormatException">Thrown if <paramref name="number" /> does not have a valid format.</exception>
     protected SwedishIdentityNumber(string number, ICheckDigitValidator? checkDigitValidator = null)
     {
         ArgumentException.ThrowIfNullOrEmpty(number, nameof(number));

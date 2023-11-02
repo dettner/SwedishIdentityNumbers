@@ -61,7 +61,7 @@ public sealed class Organisationsnummer : SwedishIdentityNumber
             result = new Organisationsnummer(number);
             return true;
         }
-        catch (FormatException)
+        catch
         {
             result = null;
             return false;

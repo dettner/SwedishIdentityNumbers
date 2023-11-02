@@ -45,7 +45,7 @@ public class Personnummer : SwedishIdentityNumber
             result = new Personnummer(number);
             return true;
         }
-        catch (FormatException)
+        catch
         {
             result = null;
             return false;
