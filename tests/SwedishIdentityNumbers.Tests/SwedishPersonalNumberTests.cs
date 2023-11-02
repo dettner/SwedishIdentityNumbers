@@ -28,12 +28,19 @@ public class SwedishIdentityNumberTests
     }
 
     [Theory]
-    [InlineData(null)]
     [InlineData("")]
     public void Constructor_NullOrEmpty_ThrowsArgumentException(string invalidNumber)
     {
         // Act & Assert
         Assert.Throws<ArgumentException>(() => new ConcreteSwedishIdentityNumber(invalidNumber));
+    }
+
+    [Theory]
+    [InlineData(null)]
+    public void Constructor_NullOrEmpty_ThrowsArgumentNullException(string invalidNumber)
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new ConcreteSwedishIdentityNumber(invalidNumber));
     }
 
     [Fact]

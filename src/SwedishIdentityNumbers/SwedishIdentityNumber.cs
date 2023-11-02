@@ -35,11 +35,11 @@ public abstract partial class SwedishIdentityNumber
     {
         ArgumentException.ThrowIfNullOrEmpty(number, nameof(number));
 
+        _checkDigitValidator = checkDigitValidator ?? new LuhnValidator();
+
         var sanitizedNumber = SanitizeNumber(number);
         if (!IsValidFormat(sanitizedNumber)) throw new FormatException("Invalid format.");
         Number = sanitizedNumber;
-
-        _checkDigitValidator = checkDigitValidator ?? new LuhnValidator();
     }
 
     /// <summary>
