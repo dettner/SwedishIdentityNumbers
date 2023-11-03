@@ -42,6 +42,12 @@ var personnummer = new Personnummer("8507301234"); // also allows 850730-1234
 var dateOfBirth = personnummer.DateOfBirth;
 ```
 
+#### Get the Legal Sex (an enum Male/Female) from a `Personnummer`
+
+```csharp
+var legalSex = personnummer.LegalSex;
+```
+
 ### Try to create a `Personnummer`
 
 ```csharp
@@ -70,6 +76,12 @@ var samordningsnummer = new Samordningsnummer("8507901234"); // also allows 8507
 
 ```csharp
 var dateOfBirth = samordningsnummer.DateOfBirth;
+```
+
+#### Get the Legal Sex (an enum Male/Female) from a `Samordningsnummer`
+
+```csharp
+var legalSex = samordningsnummer.LegalSex;
 ```
 
 ### Working with `Organisationsnummer`
