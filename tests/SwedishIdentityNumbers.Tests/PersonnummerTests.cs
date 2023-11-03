@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
+using SwedishIdentityNumbers.Enums;
 using Xunit;
 
 namespace SwedishIdentityNumbers.Tests;
@@ -58,5 +59,35 @@ public class PersonnummerTests
     public void Constructor_ThrowsFormatException(string number)
     {
         Assert.Throws<ValidationException>(() => new Personnummer(number));
+    }
+
+    [Theory]
+    [InlineData("870506-5566", LegalSex.Female)]
+    [InlineData("870506-5558", LegalSex.Male)]
+    [InlineData("8705065566", LegalSex.Female)]
+    [InlineData("8705065558", LegalSex.Male)]
+    [InlineData("870506+5566", LegalSex.Female)]
+    [InlineData("870506+5558", LegalSex.Male)]
+    public void LegalSex_IsDeterminedCorrectly(string number, LegalSex expectedLegalSex)
+    {
+        var personnummer = new Personnummer(number);
+
+        Assert.Equal(expectedLegalSex, personnummer.LegalSex);
+    }
+
+    [Theory]
+    [InlineData("870506-5558", LegalSex.Male)]
+    [InlineData("870506-5566", LegalSex.Female)]
+    [InlineData("8705065558", LegalSex.Male)]
+    [InlineData("8705065566", LegalSex.Female)]
+    [InlineData("870506+5558", LegalSex.Male)]
+    [InlineData("870506+5566", LegalSex.Female)]
+    public void TryCreate_SetsLegalSexCorrectly(string number, LegalSex expectedLegalSex)
+    {
+        var success = Personnummer.TryCreate(number, out var result);
+
+        Assert.True(success);
+        Assert.NotNull(result);
+        Assert.Equal(expectedLegalSex, result!.LegalSex);
     }
 }

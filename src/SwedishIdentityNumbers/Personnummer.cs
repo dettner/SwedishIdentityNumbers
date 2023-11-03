@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------
 
 using System.Globalization;
+using SwedishIdentityNumbers.Enums;
 
 namespace SwedishIdentityNumbers;
 
@@ -23,7 +24,8 @@ public class Personnummer : SwedishIdentityNumber
     /// <exception cref="FormatException">Thrown if the number format is invalid.</exception>
     public Personnummer(string number) : base(number)
     {
-        DateOfBirth = ExtractDateOfBirth(number);
+        DateOfBirth = ExtractDateOfBirth(Number);
+        LegalSex = ExtractLegalSex(Number);
     }
 
 
@@ -31,6 +33,12 @@ public class Personnummer : SwedishIdentityNumber
     ///     Gets the date of birth extracted from the personal identity number.
     /// </summary>
     public DateOnly DateOfBirth { get; private set; }
+
+
+    /// <summary>
+    ///     Gets the legal sex as indicated by the Personal Identity Number.
+    /// </summary>
+    public LegalSex LegalSex { get; private set; }
 
     /// <summary>
     ///     Attempts to create a new instance of the <see cref="Personnummer" /> class.
@@ -72,6 +80,12 @@ public class Personnummer : SwedishIdentityNumber
     {
         TryParseAndAdjustDate(number, out var birthDate);
         return birthDate;
+    }
+
+    private LegalSex ExtractLegalSex(string number)
+    {
+        var sexDigit = int.Parse(number[8..9]);
+        return sexDigit % 2 == 0 ? LegalSex.Female : LegalSex.Male;
     }
 
     private bool TryParseAndAdjustDate(string number, out DateOnly date)

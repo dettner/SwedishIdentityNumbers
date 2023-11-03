@@ -16,7 +16,7 @@
 		<RepositoryUrl>https://github.com/dettner/SwedishIdentityNumbers</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Identity Numbers Sweden Personnummer Organisationsnummer Samordningsnummer validering Företagsform Company Form</PackageTags>
-		<PackageReleaseNotes>Changed from a FormatException to a ValidationException if check digit is wrong.</PackageReleaseNotes>
+		<PackageReleaseNotes>Changed from a FormatException to a ValidationException if check digit is wrong. Added LegalSex to Personnummer</PackageReleaseNotes>
 		<Description>Provides classes and methods to work with Swedish identity numbers: personnummer, samordningsnummer, organisationsnummer.</Description>
 		<Title>Swedish Identity Numbers</Title>
 		<Copyright>(c) 2023 Fredrik Dettner</Copyright>
