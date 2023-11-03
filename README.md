@@ -33,6 +33,7 @@ var personnummer = new Personnummer("8507301234"); // also allows 850730-1234
 // ArgumentNullException if null
 // ArgumentException if empty
 // FormatException if not of the correct format
+// ValidationException if the check digit is wrong
 ```
 
 #### Get the Date of Birth (a DateOnly) from a `Personnummer`
@@ -62,6 +63,7 @@ var samordningsnummer = new Samordningsnummer("8507901234"); // also allows 8507
 // ArgumentNullException if null
 // ArgumentException if empty
 // FormatException if not of the correct format
+// ValidationException if the check digit is wrong
 ```
 
 #### Get the Date of Birth (a DateOnly) from a `Samordningsnummer`
@@ -80,6 +82,7 @@ var organisationsnummer = new Organisationsnummer("5560360793"); // also allows 
 // ArgumentNullException if null
 // ArgumentException if empty
 // FormatException if not of the correct format
+// ValidationException if the check digit is wrong
 ```
 
 #### Determine the Probable Swedish Company Form
