@@ -58,10 +58,9 @@ public class Personnummer : SwedishIdentityNumber
     /// </summary>
     /// <param name="number">The number to validate.</param>
     /// <returns><c>true</c> if the specified number has a valid format; otherwise, <c>false</c>.</returns>
-    protected override bool IsValidFormat(string number)
+    protected override bool ValidateFormat(string number)
     {
-        number = SanitizeNumber(number);
-        return number.Length == 10 && Validate(number) && ValidateDate(number);
+        return ValidateDate(number) && base.ValidateFormat(number);
     }
 
     private bool ValidateDate(string number)
@@ -81,6 +80,7 @@ public class Personnummer : SwedishIdentityNumber
         return DateOnly.TryParseExact($"{number[..4]}{day:D2}", "yyMMdd", null, DateTimeStyles.None,
             out date);
     }
+
 
     /// <summary>
     ///     Adjusts the day component of the date in the personal identity number.

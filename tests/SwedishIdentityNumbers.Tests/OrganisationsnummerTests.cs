@@ -7,6 +7,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using SwedishIdentityNumbers.Enums;
 using Xunit;
 
@@ -78,8 +79,8 @@ public class OrganisationsnummerTests
     [InlineData("556456-4250")]
     [InlineData("915652-5170")]
     [InlineData("716920-5970")]
-    public void Constructor_ThrowsFormatException(string number)
+    public void Constructor_ThrowsValidationException(string number)
     {
-        Assert.Throws<FormatException>(() => new Organisationsnummer(number));
+        Assert.Throws<ValidationException>(() => new Organisationsnummer(number));
     }
 }

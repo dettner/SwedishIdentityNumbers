@@ -7,6 +7,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using SwedishIdentityNumbers.CheckDigitValidators;
 
@@ -31,6 +32,7 @@ public abstract partial class SwedishIdentityNumber
     /// <exception cref="ArgumentException">Thrown if <paramref name="number" /> is empty.</exception>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="number" /> is null.</exception>
     /// <exception cref="FormatException">Thrown if <paramref name="number" /> does not have a valid format.</exception>
+    /// <exception cref="ValidationException">Thrown if <paramref name="number" /> does not have a correct check digit.</exception>
     protected SwedishIdentityNumber(string number, ICheckDigitValidator? checkDigitValidator = null)
     {
         ArgumentException.ThrowIfNullOrEmpty(number, nameof(number));
@@ -38,7 +40,8 @@ public abstract partial class SwedishIdentityNumber
         _checkDigitValidator = checkDigitValidator ?? new LuhnValidator();
 
         var sanitizedNumber = SanitizeNumber(number);
-        if (!IsValidFormat(sanitizedNumber)) throw new FormatException("Invalid format.");
+        if (!ValidateFormat(sanitizedNumber)) throw new FormatException("Invalid format.");
+        if (!ValidateCheckDigit(sanitizedNumber)) throw new ValidationException("Invalid check digit.");
         Number = sanitizedNumber;
     }
 
@@ -52,26 +55,28 @@ public abstract partial class SwedishIdentityNumber
     /// </summary>
     /// <param name="number">The identity number to validate.</param>
     /// <returns><c>true</c> if the specified number has a valid format; otherwise, <c>false</c>.</returns>
-    protected abstract bool IsValidFormat(string number);
+    protected virtual bool ValidateFormat(string number)
+    {
+        return number is { Length: 10 };
+    }
 
     /// <summary>
-    ///     Validates the specified identity number using the implemented validation strategy.
+    ///     Validates the check digit of the specified identity number.
     /// </summary>
     /// <param name="number">The identity number to validate.</param>
-    /// <returns><c>true</c> if the specified number is valid; otherwise, <c>false</c>.</returns>
-    protected bool Validate(string number)
+    /// <returns><c>true</c> if the specified number has a valid check digit; otherwise, <c>false</c>.</returns>
+    private bool ValidateCheckDigit(string number)
     {
-        var okLength = number is { Length: 10 };
-
-        return okLength && _checkDigitValidator.Validate(number);
+        return _checkDigitValidator.Validate(number);
     }
+
 
     /// <summary>
     ///     Cleans the specified number by removing non-digit characters and handling special prefixes.
     /// </summary>
     /// <param name="number">The number to clean.</param>
     /// <returns>The cleaned number.</returns>
-    protected string SanitizeNumber(string number)
+    private string SanitizeNumber(string number)
     {
         return NonDigit().Replace(number.StartsWith("16") ? number.Substring(2) : number, "");
     }

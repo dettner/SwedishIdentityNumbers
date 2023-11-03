@@ -18,7 +18,7 @@ namespace SwedishIdentityNumbers.CheckDigitValidators;
 ///         See the <see href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm on Wikipedia</see>.
 ///     </remarks>
 /// </summary>
-public class LuhnValidator : ICheckDigitValidator
+public partial class LuhnValidator : ICheckDigitValidator
 {
     /// <summary>
     ///     Validates the specified number using the Luhn algorithm.
@@ -31,7 +31,7 @@ public class LuhnValidator : ICheckDigitValidator
     public bool Validate(string number)
     {
         ArgumentException.ThrowIfNullOrEmpty(number, nameof(number));
-        if (!Regex.IsMatch(number, @"^\d+$"))
+        if (!DigitsOnly().IsMatch(number))
         {
             throw new FormatException($"Invalid format: {nameof(number)} contains non-digit characters.");
         }
@@ -54,4 +54,10 @@ public class LuhnValidator : ICheckDigitValidator
 
         return sum % 10 == 0;
     }
+
+    /// <summary>
+    ///     Provides a compiled regular expression for matching only digit characters.
+    /// </summary>
+    [GeneratedRegex(@"^\d{2,}$")]
+    private static partial Regex DigitsOnly();
 }

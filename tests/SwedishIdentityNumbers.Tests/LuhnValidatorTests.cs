@@ -59,7 +59,7 @@ public class LuhnValidatorTests
     }
 
     [Fact]
-    public void Validate_SingleDigit_ReturnsFalse()
+    public void Validate_SingleDigit_ThrowsFormatException()
     {
         // A single digit cannot satisfy the Luhn algorithm
 
@@ -67,9 +67,6 @@ public class LuhnValidatorTests
         var singleDigit = "7";
 
         // Act
-        var result = _validator.Validate(singleDigit);
-
-        // Assert
-        Assert.False(result);
+        Assert.Throws<FormatException>(() => _validator.Validate(singleDigit));
     }
 }

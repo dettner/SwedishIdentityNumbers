@@ -7,6 +7,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using Xunit;
 
 namespace SwedishIdentityNumbers.Tests
@@ -53,9 +54,9 @@ namespace SwedishIdentityNumbers.Tests
             [InlineData("701063-2390")]
             [InlineData("7010632390")]
             [InlineData("701063+2390")]
-            public void Constructor_ThrowsFormatException(string number)
+            public void Constructor_ThrowsValidationException(string number)
             {
-                Assert.Throws<FormatException>(() => new Samordningsnummer(number));
+                Assert.Throws<ValidationException>(() => new Samordningsnummer(number));
             }
         }
     }

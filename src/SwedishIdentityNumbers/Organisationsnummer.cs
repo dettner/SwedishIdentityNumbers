@@ -67,15 +67,4 @@ public sealed class Organisationsnummer : SwedishIdentityNumber
             return false;
         }
     }
-
-    /// <summary>
-    ///     Validates the format of the specified organization number.
-    /// </summary>
-    /// <param name="number">The organization number to validate.</param>
-    /// <returns><c>true</c> if the specified number is a valid organization number format; otherwise, <c>false</c>.</returns>
-    protected override bool IsValidFormat(string number)
-    {
-        number = SanitizeNumber(number);
-        return number.Length == 10 && Validate(number);
-    }
 }

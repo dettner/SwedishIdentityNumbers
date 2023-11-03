@@ -9,14 +9,14 @@
 		<PackageId>SwedishIdentityNumbers</PackageId>
 		<Authors>Fredrik Dettner</Authors>
 		<Company>Dettner Engineering AB</Company>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/dettner/SwedishIdentityNumbers</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/dettner/SwedishIdentityNumbers</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Identity Numbers Sweden Personnummer Organisationsnummer Samordningsnummer validering Företagsform Company Form</PackageTags>
-		<PackageReleaseNotes>First release of SwedishIdentityNumbers. Fine tuning documentation.</PackageReleaseNotes>
+		<PackageReleaseNotes>Changed from a FormatException to a ValidationException if check digit is wrong.</PackageReleaseNotes>
 		<Description>Provides classes and methods to work with Swedish identity numbers: personnummer, samordningsnummer, organisationsnummer.</Description>
 		<Title>Swedish Identity Numbers</Title>
 		<Copyright>(c) 2023 Fredrik Dettner</Copyright>

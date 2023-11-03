@@ -17,7 +17,7 @@ public class SwedishIdentityNumberTests
     public void Constructor_ValidNumber_SetsNumberProperty()
     {
         // Arrange
-        var validNumber = "1234567890"; // Assume this is a valid number
+        var validNumber = "2021005448"; // Assume this is a valid number
 
         // Act
         var sut = new ConcreteSwedishIdentityNumber(
@@ -60,7 +60,7 @@ public class SwedishIdentityNumberTests
         {
         }
 
-        protected override bool IsValidFormat(string number)
+        protected override bool ValidateFormat(string number)
         {
             // Assume a simple length check for this example
             return number.Length == 10;

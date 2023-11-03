@@ -7,6 +7,7 @@
 //  </copyright>
 // -----------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using Xunit;
 
 namespace SwedishIdentityNumbers.Tests;
@@ -56,6 +57,6 @@ public class PersonnummerTests
     [InlineData("870506+5550")]
     public void Constructor_ThrowsFormatException(string number)
     {
-        Assert.Throws<FormatException>(() => new Personnummer(number));
+        Assert.Throws<ValidationException>(() => new Personnummer(number));
     }
 }
