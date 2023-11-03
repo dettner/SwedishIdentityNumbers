@@ -33,18 +33,19 @@ public sealed class Organisationsnummer : SwedishIdentityNumber
 
     private SwedishCompanyForm ExtractProbableSwedishCompanyForm(string number)
     {
-        if (number.StartsWith("20"))
-        {
-            return SwedishCompanyForm.GovernmentAgency;
-        }
+        var prefix = Convert.ToInt32(number[..2]);
 
-        return number[..1] switch
+        return prefix switch
         {
-            "5" => SwedishCompanyForm.JointStockCompany,
-            "9" => SwedishCompanyForm.GeneralPartnership,
-            "7" or "8" => SwedishCompanyForm.HousingCooperative,
-            "2" => SwedishCompanyForm.ReligiousCommunity,
-            _ => SwedishCompanyForm.Unknown
+            20 => SwedishCompanyForm.GovernmentAgency,
+            _ => (prefix / 10) switch
+            {
+                5 => SwedishCompanyForm.JointStockCompany,
+                9 => SwedishCompanyForm.GeneralPartnership,
+                7 or 8 => SwedishCompanyForm.HousingCooperative,
+                2 => SwedishCompanyForm.ReligiousCommunity,
+                _ => SwedishCompanyForm.Unknown
+            }
         };
     }
 

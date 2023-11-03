@@ -14,10 +14,9 @@ namespace SwedishIdentityNumbers.Enums;
 ///     In Sweden, there are seven different forms of companies, two of which are European company forms.
 ///     These forms differ in several ways, including the amount of
 ///     <see href="https://sv.wikipedia.org/wiki/Kapital_(ekonomi)">capital</see> to invest,
-///     the number of <see href="https://sv.wikipedia.org/wiki/Del%C3%A4gare">shareholders</see>, the responsibility each
-///     one has,
-///     where the company's headquarters should be located, whether there's a need to protect the company's name in
-///     multiple counties/countries, etc.
+///     the number of <see href="https://sv.wikipedia.org/wiki/Del%C3%A4gare">shareholders</see>,
+///     the responsibility each one has, where the company's headquarters should be
+///     located, whether there's a need to protect the company's name in multiple counties/countries, etc.
 ///     Although not generally considered company forms, businesses can also be conducted as
 ///     <see href="https://sv.wikipedia.org/wiki/Ideell_f%C3%B6rening">non-profit associations</see>,
 ///     <see href="https://sv.wikipedia.org/wiki/Enkelt_bolag">sole proprietorships</see>, or by
@@ -28,42 +27,52 @@ namespace SwedishIdentityNumbers.Enums;
 /// </summary>
 /// <remarks>
 ///     The enum values and the <see cref="Organisationsnummer.ProbableSwedishCompanyForm" /> property
-///     implementation are
-///     based on
-///     information from
+///     implementation are based on information from
 ///     <see href="https://bolagsverket.se/foretag/organisationsnummer.1207.html">Bolagsverket</see>.
 /// </remarks>
 /// <seealso cref="Organisationsnummer.ProbableSwedishCompanyForm" />
 public enum SwedishCompanyForm
 {
     /// <summary>
-    ///     Aktiebolag, filialer, banker, försäkringsbolag och europabolag
+    ///     <lang name="sv">Aktiebolag, filial, bank, försäkringsbolag och europabolag</lang><br />
+    ///     <lang name="en">Joint-stock company, branch, bank, insurance company, and European company</lang>
     /// </summary>
-    JointStockCompany,
+    JointStockCompany = 5,
 
     /// <summary>
-    ///     Handelsbolag och kommanditbolag
+    ///     <lang name="sv">Handelsbolag och kommanditbolag</lang><br />
+    ///     <lang name="en">Trading partnership and limited partnership</lang>
     /// </summary>
-    GeneralPartnership,
+    GeneralPartnership = 9,
 
     /// <summary>
-    ///     Bostadsrättsföreningar, ekonomiska föreningar, näringsdrivande ideella föreningar, bostadsföreningar, kooperativa
-    ///     hyresrättsföreningar, europakooperativ och Europeiska grupperingar för territoriellt samarbete
+    ///     <lang name="sv">
+    ///         Bostadsrättsförening, ekonomisk förening, näringsdrivande ideell förening, bostadsförening,
+    ///         kooperativ hyresrättsförening, europakooperativ och Europeisk gruppering för territoriellt samarbete
+    ///     </lang>
+    ///     <br />
+    ///     <lang name="en">
+    ///         Housing cooperative, economic association, business-driven non-profit association, housing association,
+    ///         cooperative rental association, European cooperative, and European Grouping for Territorial Cooperation
+    ///     </lang>
     /// </summary>
-    HousingCooperative,
+    HousingCooperative = 7, // Using 7. 8 has same meaning
 
     /// <summary>
-    ///     Trossamfund
+    ///     <lang name="sv">Trossamfund</lang><br />
+    ///     <lang name="en">Religious community</lang>
     /// </summary>
-    ReligiousCommunity,
+    ReligiousCommunity = 2,
 
     /// <summary>
-    ///     Statlig myndighet
+    ///     <lang name="sv">Statlig myndighet</lang><br />
+    ///     <lang name="en">Governmental agency</lang>
     /// </summary>
-    GovernmentAgency,
+    GovernmentAgency = 20,
 
     /// <summary>
-    ///     Okänd
+    ///     <lang name="sv">Okänd</lang><br />
+    ///     <lang name="en">Unknown</lang>
     /// </summary>
-    Unknown
+    Unknown = 0
 }
